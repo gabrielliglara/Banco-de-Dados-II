@@ -13,7 +13,7 @@ CREATE TABLE log (operacao TEXT, id_cliente INT, nome TEXT, saldo NUMERIC, statu
 CREATE FUNCTION LOG_FUNCTION() 
 RETURNS trigger AS $$
     BEGIN
-        
+        -- testando
         RETURN;
     END;
 $$ LANGUAGE plpgsql;
