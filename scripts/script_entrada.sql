@@ -8,7 +8,7 @@ CREATE UNLOGGED TABLE clientes_em_memoria (
   saldo NUMERIC
 );
 
-CREATE TABLE log (operacao TEXT, id_cliente INT, nome TEXT, saldo NUMERIC, status TEXT);
+CREATE TABLE log (operacao TEXT, id_cliente INT, nome TEXT, saldo NUMERIC);
 
 CREATE FUNCTION LOG_FUNCTION() 
 RETURNS trigger AS $$
