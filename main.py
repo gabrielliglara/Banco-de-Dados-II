@@ -28,7 +28,7 @@ def create_table(connection):
 
         cursor.execute('''
             CREATE TABLE log(
-                operacao TEXT, id_cliente INT, nome TEXT, saldo NUMERIC, 
+                operacao TEXT, id_cliente INT PRIMARY KEY, nome TEXT, saldo NUMERIC, 
                 id_transacao INT, is_committed boolean)
         ''')
         
@@ -38,7 +38,7 @@ def create_table(connection):
 # fetchall() -> recupera as linhas da busca
 def load_log(connection):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM LOG ORDER BY ID")
+        cursor.execute("SELECT * FROM LOG ORDER BY id_cliente")
         return cursor.fetchall()
 
 # verifica se o cliente existe na tabela clientes em memoria
@@ -72,7 +72,7 @@ def redo(connection, log_data):
         elif operacao == "DELETE":
            with connection.cursor() as cursor:
               if client_in_memory(connection, id_cliente):
-                 cursor.execute("DELETE * FROM clientes_em_memoria WHERE id = %s", (id_cliente))
+                 cursor.execute("DELETE FROM clientes_em_memoria WHERE id = %s", (id_cliente,))
     connection.commit()
 
 def extrair_id_cliente(comando):
