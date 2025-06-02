@@ -146,6 +146,7 @@ def main():
     connection = connect_database()
     create_unlogged_table(connection)
     create_table(connection)
+    run_script(connection)
     log_data = load_log(connection)
     redo(connection, log_data)
     connection.close()
